@@ -1,0 +1,13 @@
+[Unit]
+Description=session
+After=multi-user.target
+
+[Service]
+ExecStartPre=-/etc/ergw-capwap-node/pre-start.sh
+ExecStart=/usr/bin/ergw-capwap-node foreground
+Type=simple
+Environment="HOME=/root"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

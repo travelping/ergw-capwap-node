@@ -1,0 +1,2 @@
+debian/pre-start.sh etc/ergw-capwap-node/
+config/ergw-capwap-node.config etc/ergw-capwap-node/

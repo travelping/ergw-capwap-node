@@ -1,0 +1,20 @@
+Source: ergw-capwap-node
+Section: net
+Priority: optional
+Maintainer: Andreas Schultz <aschultz@tpip.net>
+Build-Depends: debhelper (>=9), rebar3, erlang-base-hipe,
+	erlang-dev, erlang-tools, erlang-syntax-tools,
+	erlang-eunit, erlang-inets, erlang-snmp,
+	erlang-dialyzer, erlang-ssl
+Standards-Version: 3.9.8
+Homepage: https://github.com/travelping/ergw-capwap-node
+Vcs-Git: https://github.com/travelping/ergw-capwap-node.git
+Vcs-Browser: https://github.com/travelping/ergw-capwap-node.git
+
+Package: ergw-capwap-node
+Architecture: any
+Pre-Depends: dpkg (>= 1.17.14)
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Control Node for erGW based CAPWAP AC
+ This is the control part for a CAPWAP AC implemented in Erlang.
+
