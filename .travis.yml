@@ -1,0 +1,32 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+deploy:
+  provider: packagecloud
+  repository: "ci"
+  username: "ergw"
+  token:
+    secure: "qvlRcoZmRTkBZ6LKYicpYPGpDIytBvy8mb3LcYaCStHs1/PhTsvo7wNR33NwGUWjynjoiJV/q3cmKCaUyprNd8E7zR2wAotHIxewqHMGI0c76+PVAEX8aZ10F7CYetmf6Gm7wVpNimMMmXTN+PuecxX8A9NKc3CpqMJsBUaCs2wyxOa0fBSdHlcb/ZKllFpiBqbo3acT6zd8ZHDi8H88XHe84GKAF47D5pZVFTZjW2FFQfO57MBp4HgN5JYzQzL48039FTZ4izlfYsqY1A6qUJBy3JyRPabz163vxHBATdl4w8gVbMU3FWLM1TMGHGYAZNoobu0/MhPsvveV+jrLC64nrEq3u3kLkjLJ6iOlKYsQdO2bimR6f0SwvN1ODuJiMkpwCqeC/BTjWKAigfFVl//ZRto3RnP5sFcvo4U/9E+sOS0em6MyrzYO1bjEgrAS+3Bqjt8oJ8voMCmm9brutBJMCqFStzEY4J6b2ubQdqI+9ygUoeSXZJem32NSgplS4TNRwcx9jJw0XYsWUdiyYtCbWrHOFVIGjTAZ+03tb/VZwJlk9XOfGiBZnPjkIuzUfYl0xF/8vuFdwKUkZTCs6qf5QIRsdndDpQoMgrphnVxonBlV0oROM2n459a8Uayy4v/K5E/0f/jaik65Y1ROKTlZfWs7DGaN1iTDxl9mT4k="
+  dist: "ubuntu/xenial"
+  skip_cleanup: true
+  package_glob: artifacts/*.deb
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y devscripts
+  - docker build -t ergw -f priv/Dockerfile priv
+
+script:
+  - export SHORT_COMMIT_ID=$(git rev-parse --verify --short $TRAVIS_COMMIT)
+  - debchange -m -l "+$TRAVIS_JOB_NUMBER+git$SHORT_COMMIT_ID" 'Automatically built'
+  - mkdir artifacts
+  - docker run -v `pwd`:/build ergw
+    sh -c "
+      dpkg-buildpackage -b -uc && cp ../*deb artifacts
+    "
+
+branches:
+  only:
+    - master
