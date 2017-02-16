@@ -1,3 +1,9 @@
+ergw-capwap-node (1.8.0-1) unstable; urgency=medium
+
+  * CAPWAP upstream release 1.8.0
+
+ -- Andreas Schultz <aschultz@tpip.net>  Thu, 16 Feb 2017 09:33:46 +0100
+
 ergw-capwap-node (1.7.1-1) unstable; urgency=medium
 
   * CAPWAP upstream release 1.7.1
