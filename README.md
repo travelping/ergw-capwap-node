@@ -21,3 +21,18 @@ Build
 -----
 
     $ rebar3 compile
+
+Docker container images
+------------------------
+
+This repository also creates a [Docker
+image](https://hub.docker.com/r/ergw/ergw-capwap-node/) which can be used as a
+base for other images to create a CAPWAP AC.  At the time of writing we
+recommend to use this base image for testing and development. You can use the
+host network and need network interfaces to be configured beforehand.
+
+To add a custom configuration to the container, a volume may be mounted
+to `/config/ergw-capwap-node` containing the `sys.config` and `vm.args` erlang
+config. Alternatively, you may use a volume to provide the configuration in
+`/etc/erlang-capwap-node/erlang-capwap-node.config` or alter this file in
+a running container.
