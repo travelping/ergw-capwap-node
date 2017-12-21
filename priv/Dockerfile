@@ -10,7 +10,7 @@ RUN curl -L https://packagecloud.io/ergw/ci/gpgkey | apt-key add -
 
 RUN apt-get update && apt-get -y install build-essential debhelper \
     git rebar3 erlang-base-hipe erlang-dev erlang-tools \
-    erlang-syntax-tools erlang-eunit \
+    erlang-syntax-tools erlang-eunit erlang-diameter \
     erlang-inets erlang-snmp \
     erlang-dialyzer erlang-ssl
 
