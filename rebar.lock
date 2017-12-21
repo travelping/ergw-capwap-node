@@ -5,7 +5,7 @@
   3},
  {<<"capwap">>,
   {git,"git://github.com/travelping/capwap",
-       {ref,"865fa0eb45824272079fd78a7b2087bb06cfda56"}},
+       {ref,"714e9e02ceb66f87bcc3376c64466a5789807ec5"}},
   0},
  {<<"dtlsex">>,
   {git,"git://github.com/RoadRunnr/dtlsex.git",
