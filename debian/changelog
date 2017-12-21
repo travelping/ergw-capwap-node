@@ -1,6 +1,6 @@
-ergw-capwap-node (1.9.0-1) unstable; urgency=medium
+ergw-capwap-node (1.9.1-1) unstable; urgency=medium
 
-  * CAPWAP upstream release 1.9.0
+  * CAPWAP upstream release 1.9.1
 
  -- Andrey Teplyashin <andrey.teplyashin@travelping.com>  Wed, 20 Dec 2017 11:33:17 +0700
 
