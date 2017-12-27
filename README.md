@@ -23,7 +23,7 @@ Build
     $ rebar3 compile
 
 Docker container images
-------------------------
+-----------------------
 
 This repository also creates a [Docker
 image](https://hub.docker.com/r/ergw/ergw-capwap-node/) which can be used as a
@@ -36,3 +36,11 @@ to `/config/ergw-capwap-node` containing the `sys.config` and `vm.args` erlang
 config. Alternatively, you may use a volume to provide the configuration in
 `/etc/erlang-capwap-node/erlang-capwap-node.config` or alter this file in
 a running container.
+
+Via docker/Dockerfile.alpine an experimental Docker file exists which builds
+a much smaller container image of CAPWAP AC … ~58Mb. It makes use of a feature
+in Docker called "multi stage" builds and needs at least Docker-17.05. Build
+the image like this:
+
+    $ docker build -f docker/Dockerfile.alpine -t ergw-capwap-node:alpine .
+
