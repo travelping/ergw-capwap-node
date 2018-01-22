@@ -33,7 +33,7 @@ script:
     sh -c "
       dpkg-buildpackage -b -uc -nc && cp ../*deb artifacts
     "
-  - docker build -t $BUILD_IMAGE -f docker/Dockerfile .
+  - docker build -t $BUILD_IMAGE -f docker/Dockerfile --build-arg BUILD_PROFILE=prod+native .
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
