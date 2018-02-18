@@ -23,9 +23,15 @@ env:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y devscripts
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - docker build -t ergw -f priv/Dockerfile priv
 
 script:
+  - echo "build docker image"
+  - docker version
+  - docker build -t $BUILD_IMAGE -f docker/Dockerfile --build-arg BUILD_PROFILE=prod+native .
+  - echo "building docker image - done."
+  - echo "build deb packages"
   - export SHORT_COMMIT_ID=$(git rev-parse --verify --short $TRAVIS_COMMIT)
   - debchange -m -l "+$TRAVIS_JOB_NUMBER+git$SHORT_COMMIT_ID" 'Automatically built'
   - mkdir artifacts
@@ -33,7 +39,7 @@ script:
     sh -c "
       dpkg-buildpackage -b -uc -nc && cp ../*deb artifacts
     "
-  - docker build -t $BUILD_IMAGE -f docker/Dockerfile --build-arg BUILD_PROFILE=prod+native .
+  - echo "build deb packages - done."
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
@@ -41,7 +47,7 @@ after_success:
   - if [ "$TAG" == "master" ]; then export TAG="latest"; fi
   - docker tag $BUILD_IMAGE $BUILD_IMAGE:$TAG
   - docker push $BUILD_IMAGE:$TAG
-  - echo "docker push done"
+  - echo "docker push done."
 
 branches:
   only:
