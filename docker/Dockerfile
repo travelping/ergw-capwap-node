@@ -30,7 +30,7 @@ RUN     wget -O /usr/local/bin/rebar3 https://s3.amazonaws.com/rebar3/rebar3 && 
         chmod a+x /usr/local/bin/rebar3
 
 ADD     . /build
-RUN     export _BUILD_PROFILE=$(echo $BUILD_PROFILE | sed 's/+/,/g') && \
+RUN     export BUILD_PROFILE=$(echo $BUILD_PROFILE | sed 's/+/,/g') && \
         echo "build as $BUILD_PROFILE" && \
         rebar3 as $BUILD_PROFILE get-deps && \
         rebar3 as $BUILD_PROFILE release
