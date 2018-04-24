@@ -1,3 +1,9 @@
+ergw-capwap-node (2.2.0-1) unstable; urgency=medium
+
+  * CAPWAP upstream release 2.2.0
+
+ -- Andrey Teplyashin <andrey.teplyashin@travelping.com>  Tue, 24 Apr 2018 15:57:19 +0700
+
 ergw-capwap-node (2.1.0-1) unstable; urgency=medium
 
   * CAPWAP upstream release 2.1.0
