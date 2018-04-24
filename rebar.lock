@@ -2,7 +2,7 @@
 [{<<"bear">>,{pkg,<<"bear">>,<<"0.8.5">>},3},
  {<<"capwap">>,
   {git,"git://github.com/travelping/capwap",
-       {ref,"2250a40a0880039497241128a5953cad7f1a7bd2"}},
+       {ref,"64f5ee201ff50037216089ab32185dde8e1d77b3"}},
   0},
  {<<"certifi">>,{pkg,<<"certifi">>,<<"2.0.0">>},2},
  {<<"cowboy">>,{pkg,<<"cowboy">>,<<"2.2.0">>},1},
