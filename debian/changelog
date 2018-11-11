@@ -1,3 +1,9 @@
+ergw-capwap-node (2.3.0-0) unstable; urgency=medium
+
+  * CAPWAP upstream release 2.3.0-rc1
+
+ -- Mathias Gumz <mathias.gumz@travelping.com>  Sun, 12 Nov 2018 09:10:00 +0000
+
 ergw-capwap-node (2.2.0-1) unstable; urgency=medium
 
   * CAPWAP upstream release 2.2.0

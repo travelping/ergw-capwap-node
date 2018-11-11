@@ -1,11 +1,11 @@
 # -- build-environment --
 # see https://docs.docker.com/engine/userguide/eng-image/multistage-build/
 
-FROM    alpine:3.7 AS build-env
+FROM    alpine:3.9 AS build-env
 
 ARG     BUILD_PROFILE=prod+native
 WORKDIR /build
-RUN     apk update && apk --no-cache upgrade && \
+RUN     apk --no-cache upgrade && \
         apk --no-cache add \
             erlang \
                 erlang-asn1 erlang-compiler erlang-crypto erlang-dev \
@@ -17,11 +17,13 @@ RUN     apk update && apk --no-cache upgrade && \
             git \
             libc-dev libc-utils \
             libgcc \
+            libcrypto1.1 \
             linux-headers \
             make \
             musl-dev musl-utils \
             pcre2 \
             pkgconf \
+            openssl-dev \
             scanelf \
             wget \
             zlib
@@ -37,13 +39,12 @@ RUN     export BUILD_PROFILE=$(echo $BUILD_PROFILE | sed 's/+/,/g') && \
 
 # -- runtime image --
 
-FROM    alpine:3.7
+FROM    alpine:3.9
 
 ARG     BUILD_PROFILE=prod+native
 WORKDIR /
-RUN     apk update && \
-        apk --no-cache upgrade && \
-        apk --no-cache add ncurses-libs libcrypto1.0
+RUN     apk --no-cache upgrade && \
+        apk --no-cache add ncurses-libs libcrypto1.1
 COPY    docker/docker-entrypoint.sh /
 COPY    config/ergw-capwap-node.config /etc/ergw-capwap-node/
 
